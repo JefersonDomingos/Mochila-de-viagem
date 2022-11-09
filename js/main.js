@@ -1,4 +1,6 @@
 const formulario = document.getElementById("novoItem");
+const lista = document.getElementById("lista");
+const itens = [];
 
 formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
@@ -24,11 +26,16 @@ function criaElemento (nome, quantidade){
     novoItem.appendChild(numeroItem);
     novoItem.innerHTML += nome;
 
-    const lista = document.getElementById("lista");
     lista.appendChild(novoItem);
 
-    localStorage.setItem("nome",nome);
-    localStorage.setItem("quantidade",quantidade);
+    const itemAtual = {
+        "nome" : nome,
+        "quantidade" : quantidade
+    };
+
+    itens.push(itemAtual);
+                        //chave , valor
+    localStorage.setItem("item" , JSON.stringify(itens));
 }
 
 
